@@ -1,0 +1,54 @@
+﻿<!--OP VERSIE -->
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.Master.cs" Inherits="Milanov.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Milanov OP</title>
+    <link href="Style.css" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div id="wrapper">
+        <header>
+                <hgroup>
+                    <h1 id="logo"> Place Logo Here</h1>
+                    <h2 id="site_description"> Just a Milanov Site</h2>
+                </hgroup>
+                <!-- Header of the Site! -->
+                <nav>
+                    <ul id = "nav1">
+	                    <li><a href="#">Home</a></li>
+	                    <li><a href="#">About</a></li>
+	                    <li><a href="#">Products</a>	            
+	                    </li>
+	                    <li><a href="#">Services</a>	            
+	                    </li>
+	                    <li><a href="#">Contacts</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+    <div>
+        <div id="Content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+
+        </div>
+
+        <footer>
+            Milanov © 2014 Doge inc. Much Doge. Very wow, amaze.
+        </footer>
+
+    </form>
+</body>
+</html>

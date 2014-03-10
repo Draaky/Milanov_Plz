@@ -1,0 +1,113 @@
+﻿body 
+{
+        background-color: grey;
+        margin:0px;
+        padding:0px;
+
+}
+#wrapper {
+	    width: 980px;
+	    margin: 0 auto;
+}
+header
+{
+        display: block;
+        position: relative;
+        height: 160px;
+        
+        margin: 0 auto;
+}
+#logo
+{
+        position: absolute;
+        top: 10px;
+        font: italic 100%/130% "Times New Roman", Times, serif;
+
+}
+#site_description
+{
+        font: italic 100%/130% "Times New Roman", Times, serif;
+        color: #fff;
+        position: absolute;
+        top: 55px;
+}
+nav
+{
+        display:block;
+}
+nav a 
+{
+        line-height: 100%;
+        font-weight: bold;
+        color: #fff;
+        display: block;
+        padding: 14px 15px;
+        text-decoration: none;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+        margin-left:10px;
+        outline: none;
+}
+nav a:hover 
+{
+        color: #fff;
+        background: #474747;
+        /* gradient */
+        background: -webkit-gradient(linear, left top, left bottom, from(#282828), to(#4f4f4f));
+        background: -moz-linear-gradient(top,  #282828,  #4f4f4f);
+        background: linear-gradient(-90deg, #282828, #4f4f4f);
+}
+
+ul 
+{
+        width: 100%;
+        background: #ccc;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+}
+li
+{
+
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        float: left;
+        position: relative;
+}
+#Content
+{
+        
+        margin: 0 auto;
+
+        background: #fff;
+        margin: 30px 0 30px;
+        padding: 20px 35px;
+        width: 910px;
+        float: left;
+
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0 1px 3px;
+}
+footer 
+{
+       text-align: center;
+       padding-top:     5px;
+       padding-bottom:  5px;
+
+       position:absolute;
+       bottom:0;
+       width:100%;
+       height:20px;   
+       background: white;
+
+       font: italic 100%/130% "Times New Roman", Times, serif;
+}
