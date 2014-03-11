@@ -3,6 +3,7 @@
         background-color: grey;
         margin:0px;
         padding:0px;
+        
 
 }
 #wrapper {
@@ -110,4 +111,39 @@ footer
        background: white;
 
        font: italic 100%/130% "Times New Roman", Times, serif;
+}
+
+.product H1
+{
+    float: left;
+}
+.product
+{
+    background-color: yellow;
+    float:left;
+    width: 290px;
+    min-height: 100px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+}
+.name
+{
+    font: italic 100%/130% "Times New Roman", Times, serif;
+}
+.description
+{
+
+}
+.thumbnail
+{
+
+}
+.watermark
+{
+
+}
+.price
+{
+
 }

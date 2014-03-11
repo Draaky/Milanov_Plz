@@ -72,9 +72,12 @@
                 <LayoutTemplate>
                     <table class="listViewTable">
                         <tr>
-                            <th>Subject</th>
-                            <th>Text</th>
-                            <th>Catagory</th>
+                            <td>NAME</td>
+                            <td>TEXT</td>
+                            <td>URL </td>
+                            <td>SMALL_URL</td>
+                            <td>WATER_URL</td>
+                            <td>PRICE</td>
                         </tr>
                         <tr id="itemPlaceholder" runat="server" />
                     </table>
