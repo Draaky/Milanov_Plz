@@ -22,12 +22,13 @@ header
 {
         position: absolute;
         top: 10px;
-        font: italic 100%/130% "Times New Roman", Times, serif;
+        font: italic 100%/130% Comic sans MS, Times, serif;
+        
 
 }
 #site_description
 {
-        font: italic 100%/130% "Times New Roman", Times, serif;
+        font: italic 100%/130% Comic sans MS, Times, serif;
         color: #fff;
         position: absolute;
         top: 55px;
@@ -35,6 +36,20 @@ header
 nav
 {
         display:block;
+}
+#nav1
+{
+    float:left;
+}
+#nav2
+{
+    float:right;
+    margin-right:10px;
+}
+#nav3
+{
+    float:right;
+    
 }
 nav a 
 {
@@ -81,6 +96,7 @@ li
         list-style: none;
         float: left;
         position: relative;
+        
 }
 #Content
 {
@@ -112,6 +128,7 @@ footer
 
        font: italic 100%/130% "Times New Roman", Times, serif;
 }
+<<<<<<< HEAD
 
 .product H1
 {
@@ -147,3 +164,5 @@ footer
 {
 
 }
+=======
+>>>>>>> origin/Yannick

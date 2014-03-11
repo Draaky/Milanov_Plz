@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<<<<<<< HEAD
 
     <h1>Products</h1>
 
@@ -21,4 +22,7 @@
                     
         </ItemTemplate>
     </asp:ListView>
+=======
+    PRODUCTEN JONUGH
+>>>>>>> origin/Yannick
 </asp:Content>

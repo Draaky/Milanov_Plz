@@ -13,11 +13,14 @@ namespace Milanov
         {
 
         }
+<<<<<<< HEAD
         public IQueryable<Products> ListViewMessage_GetData()
         {
             var msgCRUD = new Products_CRUD();
             var msgs = msgCRUD.GetProducts();
             return msgs.AsQueryable<Products>();
         }
+=======
+>>>>>>> origin/Yannick
     }
 }
