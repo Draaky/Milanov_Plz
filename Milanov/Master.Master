@@ -26,10 +26,8 @@
                     <ul id = "nav1">
 	                    <li><a href="#">Home</a></li>
 	                    <li><a href="#">About</a></li>
-	                    <li><a href="#">Products</a>	            
-	                    </li>
-	                    <li><a href="#">Services</a>	            
-	                    </li>
+	                    <li><a href="#">Products</a></li>
+	                    <li><a href="#">Services</a></li>
 	                    <li><a href="#">Contacts</a></li>
                     </ul>
                 </nav>

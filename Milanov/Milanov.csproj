@@ -72,6 +72,7 @@
     <Content Include="App_Data\Milanov_DB_log.ldf">
       <DependentUpon>Milanov_DB.mdf</DependentUpon>
     </Content>
+    <Content Include="Contact.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
@@ -86,6 +87,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
