@@ -30,6 +30,6 @@
     <asp:Button ID="btn_Register" runat="server" Text="Register" Width="90px" />
     <br />
 
-
+    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
 
 </asp:Content>
