@@ -10,7 +10,7 @@
 namespace Milanov {
     
     
-    public partial class WebForm1 {
+    public partial class Login {
         
         /// <summary>
         /// lbl_CheckLogin control.

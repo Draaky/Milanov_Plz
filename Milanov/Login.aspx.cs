@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Milanov
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         RegLogSystem rlSystem = new RegLogSystem();
         string m_Username, m_Password;
