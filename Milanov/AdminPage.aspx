@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminPage.aspx.cs" Inherits="Milanov.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminPage.aspx.cs" Inherits="Milanov.Admin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -49,6 +49,8 @@
                                     <asp:DynamicControl runat="server" ValidationGroup="FormViewMessageGroup" DataField="PRODUCT_PRICE" Mode="Insert" />
                                 </td>
                             </tr>
+                            
+
                             <tr>
                                 <td colspan="2">
                                     <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="FormViewMessageGroup" CommandName="Insert" />
@@ -115,4 +117,21 @@
                 </EditItemTemplate>
             </asp:ListView>
 
+    <!-- FOTO UPLOAD 
+                            <div>
+                                <p>
+                                    Please Select an Image file:    
+                                <asp:FileUpload ID="FUP_Image" runat="server" />
+                                </p>
+
+                                <p>
+                                <asp:Button ID="btnUpload" runat="server" Text="Upload Image" onclick="btnUpload_Click" />
+                                </p>
+
+                                <p>
+                                <asp:Image ID="imgUploadedImage" runat="server" Width="250" 
+                                   Height="250" BorderColor="Black" BorderStyle="Solid" BorderWidth="1" EnableViewState="False" Visible="False" />
+                                </p>
+                            </div>
+                            <!-- END -->
 </asp:Content>
