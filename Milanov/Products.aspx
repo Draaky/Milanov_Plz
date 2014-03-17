@@ -21,4 +21,19 @@
                     
         </ItemTemplate>
     </asp:ListView>
+        <div>
+            <p>
+                Please Select an Image file:    
+            <asp:FileUpload ID="FUP_Image" runat="server" />
+            </p>
+
+            <p>
+            <asp:Button ID="btnUpload" runat="server" Text="Upload Image" onclick="btnUpload_Click" />
+            </p>
+
+            <p>
+            <asp:Image ID="imgUploadedImage" runat="server" Width="250" 
+               Height="250" BorderColor="Black" BorderStyle="Solid" BorderWidth="1" EnableViewState="False" Visible="False" />
+            </p>
+        </div>
 </asp:Content>
