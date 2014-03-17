@@ -29,6 +29,9 @@
 	                    <li><a href="./Products.aspx">Products</a></li>
 	                    <li><a href="./AdminPage.aspx">AdminPage</a></li>
 	                    <li><a href="#">Contacts</a></li>
+	                    <li><a href="Login.aspx">Login</a></li>
+	                    <li><a href="#">Services</a></li>
+	                    <li><a href="Contact.aspx">Contact</a></li>
                     </ul>
                 </nav>
             </header>

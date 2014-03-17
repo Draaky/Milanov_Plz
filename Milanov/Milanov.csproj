@@ -78,6 +78,7 @@
     <Content Include="Index.aspx" />
     <Content Include="packages.config" />
     <Content Include="AdminPage.aspx" />
+    <Content Include="Login.aspx" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Products.aspx" />
     <Content Include="Scripts\jquery-2.1.0.js" />
@@ -129,6 +130,14 @@
     <Compile Include="AdminPage.aspx.designer.cs">
       <DependentUpon>AdminPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegLogSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.config" />

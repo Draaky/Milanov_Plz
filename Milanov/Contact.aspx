@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
+    Iedereen is een fag
 
-    Tralalalala
+
 </asp:Content>
