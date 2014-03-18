@@ -22,15 +22,6 @@ namespace Milanov {
         protected global::System.Web.UI.WebControls.FormView FormViewMessage;
         
         /// <summary>
-        /// ListViewMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewMessage;
-        
-        /// <summary>
         /// FUP_Image control.
         /// </summary>
         /// <remarks>
@@ -56,5 +47,14 @@ namespace Milanov {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgUploadedImage;
+        
+        /// <summary>
+        /// ListViewMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewMessage;
     }
 }

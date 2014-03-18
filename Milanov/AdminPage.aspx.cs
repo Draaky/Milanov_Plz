@@ -34,10 +34,14 @@ namespace Milanov
         {
             var product = new Products();
             TryUpdateModel(product);
+           // product.PRODUCT_URL = path;
             if (ModelState.IsValid)
             {
+                
                 new Products_CRUD().Insert(product);
             }
+
+        
             ListViewMessage.DataBind();            
         }
 
@@ -50,7 +54,7 @@ namespace Milanov
 
         // FOTO UPLOAD
 
-        protected void btnUpload_Click(object sender, EventArgs e)
+        protected void btnUpload_Click(object sender, EventArgs e )
         {
             if (FUP_Image.HasFile)
             {
@@ -67,26 +71,35 @@ namespace Milanov
                     System.Drawing.Image UploadedImage = System.Drawing.Image.FromStream(FUP_Image.PostedFile.InputStream);
 
                 }
+                // Getting the file name of the selected image
+                string FileName = Path.GetFileNameWithoutExtension(FUP_Image.PostedFile.FileName);
+
+                // Getting the file extension of the selected image
+                string FileExtension = Path.GetExtension(FUP_Image.PostedFile.FileName);
+                // Creating a complete relative path for storing the image.
+                // And also attaching the datetime stamp with the image name.
+                string path = "IMG/" + FileName +
+                       DateTime.Now.ToString("yyyy-MM-dd HHmmtt") + FileExtension;
+
+                // Saving the Image.
+                FUP_Image.SaveAs(Server.MapPath(path));
+
+                imgUploadedImage.ImageUrl = path;
+                if (!String.IsNullOrEmpty(imgUploadedImage.ImageUrl))
+                {
+                    // Showing a notification of success after uploading.
+                    string alert = "alert('Image uploaded successfully');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
+                }
+                //return path;
+                //FormViewMessage_InsertItem(path);
             }
-            // Getting the file name of the selected image
-            string FileName = Path.GetFileNameWithoutExtension(FUP_Image.PostedFile.FileName);
-            // Getting the file extension of the selected image
-            string FileExtension = Path.GetExtension(FUP_Image.PostedFile.FileName);
-            // Creating a complete relative path for storing the image.
-            // And also attaching the datetime stamp with the image name.
-            string path = "IMG/" + FileName +
-                   DateTime.Now.ToString("yyyy-MM-dd HHmmtt") + FileExtension;
-
-            // Saving the Image.
-            FUP_Image.SaveAs(Server.MapPath(path));
-
-            imgUploadedImage.ImageUrl = path;
-            if (!String.IsNullOrEmpty(imgUploadedImage.ImageUrl))
+            else 
             {
-                // Showing a notification of success after uploading.
-                string alert = "alert('Image uploaded successfully');";
+                string alert = "alert('No file uploaded!');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
             }
+            
         }
     }
 }

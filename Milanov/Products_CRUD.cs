@@ -52,7 +52,7 @@ namespace Milanov
             var connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                 .ConnectionString;
 
-            var result = new List<Products>();
+            //var result = new List<Products>();
             using (var conn = new SqlConnection(connStr))
             {
                 using (var cmd = new SqlCommand(sqlStr, conn))
