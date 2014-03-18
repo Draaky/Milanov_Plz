@@ -23,18 +23,18 @@ namespace Milanov
             m_Username = txt_Username.Text;
             m_Password = txt_Password.Text;
 
-            //checkLogin = rlSystem.GetUsers(m_Username, m_Password);
+            checkLogin = rlSystem.GetUsers(m_Username, m_Password);
 
-            //if (checkLogin == true)
-            //{
-            //    lbl_CheckLogin.Text = "Login Succesfull";
-            //}
-            //else
-            //{
-            //    lbl_CheckLogin.Text = "Login Failed";
-            //}
+            if (checkLogin == true)
+            {
+                lbl_CheckLogin.Text = "Login Succesfull";
+            }
+            else
+            {
+                lbl_CheckLogin.Text = "Login Failed";
+            }
 
-            lbl_CheckLogin.Text = rlSystem.GetUsers(m_Username, m_Password);
+            //lbl_CheckLogin.Text = rlSystem.GetUsers(m_Username, m_Password);
         }
     }
 }

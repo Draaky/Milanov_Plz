@@ -25,12 +25,13 @@
                 <nav>
                     <ul id = "nav1">
 	                    <li><a href="./Index.aspx">Home</a></li>
-	                    <li><a href="#">About</a></li>
 	                    <li><a href="./Products.aspx">Products</a></li>
-	                    <li><a href="./AdminPage.aspx">AdminPage</a></li>
-	                    <li><a href="Login.aspx">Login</a></li>
-	                    <li><a href="#">Services</a></li>
-	                    <li><a href="Contact.aspx">Contact</a></li>
+                        <li><a href="./About.aspx">About</a></li>
+	                    <li><a href="./Contact.aspx">Contact</a></li>
+
+                        <li><a href="./AdminPage.aspx">AdminPage</a></li>
+                        <li id="nav2"><a href="./Register.aspx">Register</a></li>
+                        <li id="nav3"><a href="./Login.aspx">Login</a></li>
                     </ul>
                 </nav>
             </header>

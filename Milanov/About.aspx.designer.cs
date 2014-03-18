@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Milanov
-{
-
-
-    public partial class About
-    {
+namespace Milanov {
+    
+    
+    public partial class About {
     }
 }

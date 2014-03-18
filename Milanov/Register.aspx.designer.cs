@@ -10,16 +10,7 @@
 namespace Milanov {
     
     
-    public partial class Login {
-        
-        /// <summary>
-        /// lbl_CheckLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CheckLogin;
+    public partial class Register {
         
         /// <summary>
         /// Label1 control.
@@ -76,30 +67,39 @@ namespace Milanov {
         protected global::System.Web.UI.WebControls.Label lbl_Password;
         
         /// <summary>
-        /// lbl_UsernamePassword control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_UsernamePassword;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// btn_Login control.
+        /// txt_PasswordCheck control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Login;
+        protected global::System.Web.UI.WebControls.TextBox txt_PasswordCheck;
         
         /// <summary>
-        /// btn_Register control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Register;
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// txt_Register control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button txt_Register;
     }
 }

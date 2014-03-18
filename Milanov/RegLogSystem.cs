@@ -18,7 +18,7 @@ namespace Milanov
         DataRow dr;
         SqlCommandBuilder cmdBuilder;
 
-        public string GetUsers(string username, string password)
+        public bool GetUsers(string username, string password)
         {
             bool checkLogin = false;
             string test = string.Empty;
@@ -46,8 +46,8 @@ namespace Milanov
                 }
             }
 
-            //return checkLogin;
-            return test;
+            return checkLogin;
+            //return test;
             //return dt.Rows[0].ItemArray[1].ToString();
         }
     }

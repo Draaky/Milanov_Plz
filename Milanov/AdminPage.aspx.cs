@@ -14,6 +14,7 @@ namespace Milanov
         {
 
         }
+        // Get info out of database.
         public IQueryable<Products> ListViewMessage_GetData()
         {
             var msgCRUD = new Products_CRUD();
@@ -21,7 +22,7 @@ namespace Milanov
             return msgs.AsQueryable<Products>();
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // Update the info that has been changed.
         public void ListViewMessage_UpdateItem(Products product)
         {
             if (ModelState.IsValid)
@@ -30,6 +31,7 @@ namespace Milanov
             }
         }
 
+        //insert item fuction.
         public void FormViewMessage_InsertItem()
         {
             var product = new Products();
@@ -45,7 +47,7 @@ namespace Milanov
             ListViewMessage.DataBind();            
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // Delete where id is product_id
         public void ListViewMessage_DeleteItem(int product_id)
         {
             new Products_CRUD().Delete(product_id);

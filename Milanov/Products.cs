@@ -9,16 +9,7 @@ namespace Milanov
     public class Products
     {
 
-        /*  Database info!
-            [PRODUCT_ID]        INT            NOT NULL,
-            [PRODUCT_NAME]      CHAR (20)      NULL,
-            [PRODUCT_TEXT]      CHAR (500)     NULL,
-            [PRODUCT_URL]       CHAR (50)      NULL,
-            [PRODUCT_SMALL_URL] CHAR (50)      NULL,
-            [PRODUCT_WATER_URL] CHAR (50)      NULL,
-            [PRODUCT_PRICE]     DECIMAL (7, 2) NULL,
-            PRIMARY KEY CLUSTERED ([PRODUCT_ID] ASC) 
-         */
+        
 
         // All value slots.
         [Key, ScaffoldColumn(false)]
@@ -37,10 +28,10 @@ namespace Milanov
         public decimal PRODUCT_PRICE { get; set; }
         
 
-        //Empty plz!
+        
         public Products() { }
 
-        // Constructor plz fill all!
+        // Constructor for products.
         public Products(int p_id, string p_name, string p_txt, string p_url, string p_small, string p_water, decimal p_price)
         {
             PRODUCT_ID          = p_id;

@@ -36,6 +36,20 @@ nav
 {
         display:block;
 }
+#nav1
+{
+    float: left;
+
+}
+#nav2
+{
+    float:right;
+    margin-right:10px;
+}
+#nav3
+{
+    float:right;
+}
 nav a 
 {
         line-height: 100%;
@@ -57,6 +71,7 @@ nav a:hover
         background: -moz-linear-gradient(top,  #282828,  #4f4f4f);
         background: linear-gradient(-90deg, #282828, #4f4f4f);
 }
+
 
 ul 
 {
