@@ -1,8 +1,14 @@
 ﻿body 
 {
-        background-color: grey;
+        background-color: rgb(230,218,180);
+
+        background: -webkit-gradient(linear, left top, left bottom, from(#FFE257), to(#EC7E36));
+        background: -moz-linear-gradient(top,  #FFE257,  #EC7E36);
+        background: linear-gradient(-90deg, #FFE257, #EC7E36);
+
+
         margin:0px;
-        padding:0px;
+        padding:0px;    
         
 
 }
@@ -14,7 +20,7 @@ header
 {
         display: block;
         position: relative;
-        height: 160px;
+        height: 250px;
         
         margin: 0 auto;
 }
@@ -30,7 +36,7 @@ header
         font: italic 100%/130% "Times New Roman", Times, serif;
         color: #fff;
         position: absolute;
-        top: 55px;
+        top: 150px;
 }
 nav
 {
@@ -67,16 +73,16 @@ nav a:hover
         color: #fff;
         background: #474747;
         /* gradient */
-        background: -webkit-gradient(linear, left top, left bottom, from(#282828), to(#4f4f4f));
-        background: -moz-linear-gradient(top,  #282828,  #4f4f4f);
-        background: linear-gradient(-90deg, #282828, #4f4f4f);
+        background: -webkit-gradient(linear, left top, left bottom, from(#FFE257), to(#EC7E36));
+        background: -moz-linear-gradient(top,  #FFE257,  #EC7E36);
+        background: linear-gradient(-90deg, #FFE257, #EC7E36);
 }
 
 
 ul 
 {
         width: 100%;
-        background: #ccc;
+        background: rgb(168,113,33)/*#ccc*/;
         margin: 0;
         padding: 0;
         position: absolute;
@@ -134,31 +140,76 @@ footer
 }
 .product
 {
-    background-color: yellow;
+    
     float:left;
-    width: 290px;
-    min-height: 100px;
+    width: 280px;
+    min-height: 400px;
     margin-left: 10px;
     margin-bottom: 10px;
+
+    word-wrap:break-word;
+    position:relative;
+    border-width:2px;
+    border:solid;
 
 }
 .name
 {
-    font: italic 100%/130% "Times New Roman", Times, serif;
+    width: 280px;
+    float:left;
+    font-size:large;
+    margin-left: 15px;
+    margin-top:10px;
 }
 .description
 {
+    font: italic 100%/130% "Times New Roman", Times, serif;
 
+    width: 280px;
+    float:left;
+    margin-left: 15px;
+    
+    margin-top:10px;
 }
 .thumbnail
 {
+    width:100%;
+    float:left;
+    text-align:center;
+    margin-left: 5px;
 
 }
 .watermark
 {
-
+    width: 280px;
+    float:left;
+    
+    margin-top:10px;
 }
 .price
 {
+    width: 280px;
+    float:left;
+    margin-left: 15px;
+    text-align:center;
+    margin-top:10px;
+}
+.link
+{
+    width: 250px;
+    text-align:center;
+    overflow:hidden;
+    float:left;
+    margin: 5px;
 
+
+}
+#buttons
+{
+    width: 280px;
+    text-align:center;
+    float:left;
+    position:absolute;
+    bottom:0;
+    margin-bottom: 10px;
 }

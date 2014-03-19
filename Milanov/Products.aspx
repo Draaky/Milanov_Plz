@@ -13,8 +13,8 @@
         <ItemTemplate>
             <div class="product">
                 <div class="name"><%#: Item.PRODUCT_NAME %></div>
+                <div class="thumbnail"><img alt="Thumbnail" src="<%#: Item.PRODUCT_SMALL_URL %>" /></div>
                 <div class="description"><%#: Item.PRODUCT_TEXT %></div>
-                <div class="thumbnail"><%#: Item.PRODUCT_SMALL_URL %></div>
                 <div class="watermark"><%#: Item.PRODUCT_WATER_URL %></div>
                 <div class="price"><%#: Item.PRODUCT_PRICE %></div>
             </div>                

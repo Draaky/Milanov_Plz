@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,7 @@ namespace Milanov
     public class Products_CRUD
     {
         // Read query to get all data out of database.
+        #region Get Products
         public List<Products> GetProducts()
         {
             
@@ -43,8 +45,10 @@ namespace Milanov
             }
             return result;
         }
+        #endregion
 
         // Create/Insert Query for products
+        #region Insert into DB
         public bool Insert(Products product)
         {
             var sqlStr = @"INSERT INTO PRODUCTS (PRODUCT_NAME, PRODUCT_TEXT, PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL, PRODUCT_PRICE) 
@@ -70,8 +74,10 @@ namespace Milanov
                 }
             }
         }
+#endregion
 
         // Update info in database.
+        #region update row in DB
         public bool Update(Products product)
         {
             var sqlStr = @"UPDATE PRODUCTS 
@@ -99,9 +105,65 @@ namespace Milanov
                 }
             }
         }
+        #endregion
+
         // Query to delete a row of data out of database.
+        #region Delete row out of DB
         public bool Delete(int PRODUCT_ID)
         {
+            // Delete img.
+            var selectquery = @"SELECT  PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL FROM PRODUCTS WHERE PRODUCT_ID = @PRODUCT_ID";
+            var connString = ConfigurationManager.ConnectionStrings["Milanov_DB"]
+                .ConnectionString;
+
+            using (var connect = new SqlConnection(connString))
+            {
+                using (var cmd = new SqlCommand(selectquery, connect))
+                {
+                    cmd.Parameters.AddWithValue("@PRODUCT_ID", PRODUCT_ID);
+                    connect.Open();
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())  // Read info out of cmd.
+                        {
+                            string img_big;
+                            string img_small;
+                            string img_watered;
+                            
+                            // Get full path.
+                            img_big = HttpContext.Current.Server.MapPath(Convert.ToString(rdr["PRODUCT_URL"]));
+                            img_small = HttpContext.Current.Server.MapPath(Convert.ToString(rdr["PRODUCT_SMALL_URL"]));
+                            img_watered = HttpContext.Current.Server.MapPath(Convert.ToString(rdr["PRODUCT_WATER_URL"]));
+
+                            FileInfo big_img = new FileInfo(img_big);
+                            FileInfo small_img = new FileInfo(img_small);
+                            FileInfo watered_img = new FileInfo(img_watered);
+
+                            // Delete if file is found.
+                            if (big_img.Exists)
+                            {
+                                big_img.Delete();
+                            }
+
+                            if (small_img.Exists)
+                            {
+                                small_img.Delete();
+                            }
+                            if (watered_img.Exists)
+                            {
+                                watered_img.Delete();
+                            }
+                        }
+                     }
+                }
+            }
+            
+           //After file is deleted, we delete row in database.
+
+
+            // DELETE DB info.
+
+            // Delete row where id = id.
             var sqlStr = @"DELETE FROM PRODUCTS WHERE PRODUCT_ID = @PRODUCT_ID";
             var connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                 .ConnectionString;
@@ -115,6 +177,7 @@ namespace Milanov
                 }
             }
         }
+        #endregion
 
 
 

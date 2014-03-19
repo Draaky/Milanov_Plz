@@ -74,6 +74,8 @@
       <DependentUpon>Milanov_DB.mdf</DependentUpon>
     </Content>
     <Content Include="Contact.aspx" />
+    <Content Include="DogeLogo.jpg" />
+    <Content Include="DogeWoW.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
@@ -86,6 +88,7 @@
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Style.css" />
+    <Content Include="watermark.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -171,6 +174,9 @@
     <Folder Include="IMG\" />
     <Folder Include="IMG_SMALL\" />
     <Folder Include="IMG_WATER\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

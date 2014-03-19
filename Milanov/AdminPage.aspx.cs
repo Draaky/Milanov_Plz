@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -15,14 +18,17 @@ namespace Milanov
 
         }
         // Get info out of database.
+        #region GetData
         public IQueryable<Products> ListViewMessage_GetData()
         {
             var msgCRUD = new Products_CRUD();
             var msgs = msgCRUD.GetProducts();
             return msgs.AsQueryable<Products>();
         }
+        #endregion
 
         // Update the info that has been changed.
+        #region update query
         public void ListViewMessage_UpdateItem(Products product)
         {
             if (ModelState.IsValid)
@@ -30,78 +36,153 @@ namespace Milanov
                 new Products_CRUD().Update(product);
             }
         }
+        #endregion
 
-        //insert item fuction.
+        //insert item fuction. & Foto Upload.
+        #region Insert Query
         public void FormViewMessage_InsertItem()
         {
-            var product = new Products();
-            TryUpdateModel(product);
-           // product.PRODUCT_URL = path;
-            if (ModelState.IsValid)
+            var uploadcontrol = FormViewMessage.FindControl("ImageUpload") as FileUpload;
+
+
+            if (uploadcontrol.HasFile)
             {
-                
-                new Products_CRUD().Insert(product);
-            }
+                string FileType = Path.GetExtension(uploadcontrol.PostedFile.FileName).ToLower().Trim();
 
-        
-            ListViewMessage.DataBind();            
-        }
-
-        // Delete where id is product_id
-        public void ListViewMessage_DeleteItem(int product_id)
-        {
-            new Products_CRUD().Delete(product_id);
-        }
-
-
-        // FOTO UPLOAD
-
-        protected void btnUpload_Click(object sender, EventArgs e )
-        {
-            if (FUP_Image.HasFile)
-            {
-                string FileType = Path.GetExtension(FUP_Image.PostedFile.FileName).ToLower().Trim();
-                // Checking the format of the uploaded file.
-                if (FileType != ".jpg" && FileType != ".png" && FileType != ".gif" && FileType != ".bmp")
-                {
-                    string alert = "alert('File Format Not Supported. Only .jpg, .png, .bmp and .gif file formats are allowed.');";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
-                }
-                else
-                {
-                    // Getting the stream of the selected image and assign it to the Image Object.
-                    System.Drawing.Image UploadedImage = System.Drawing.Image.FromStream(FUP_Image.PostedFile.InputStream);
-
-                }
-                // Getting the file name of the selected image
-                string FileName = Path.GetFileNameWithoutExtension(FUP_Image.PostedFile.FileName);
+                 // Getting the file name of the selected image
+                string FileName = Path.GetFileNameWithoutExtension(uploadcontrol.PostedFile.FileName);
 
                 // Getting the file extension of the selected image
-                string FileExtension = Path.GetExtension(FUP_Image.PostedFile.FileName);
+                string FileExtension = Path.GetExtension(uploadcontrol.PostedFile.FileName);
                 // Creating a complete relative path for storing the image.
                 // And also attaching the datetime stamp with the image name.
                 string path = "IMG/" + FileName +
                        DateTime.Now.ToString("yyyy-MM-dd HHmmtt") + FileExtension;
 
-                // Saving the Image.
-                FUP_Image.SaveAs(Server.MapPath(path));
+                string thumbPath = "IMG_SMALL/" + FileName +
+                       DateTime.Now.ToString("yyyy-MM-dd HHmmtt") + FileExtension;
 
-                imgUploadedImage.ImageUrl = path;
-                if (!String.IsNullOrEmpty(imgUploadedImage.ImageUrl))
+                string wateredPath = "IMG_WATER/" + FileName +
+                       DateTime.Now.ToString("yyyy-MM-dd HHmmtt") + FileExtension;
+
+                // Checking the format of the uploaded file.
+                if (FileType != ".jpg" && FileType != ".png")
                 {
-                    // Showing a notification of success after uploading.
-                    string alert = "alert('Image uploaded successfully');";
+                    string alert = "alert('File Format Not Supported. Only .jpg and .png,  file formats are allowed.');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
                 }
-                //return path;
-                //FormViewMessage_InsertItem(path);
+                else
+                {
+                    // Saving the Image.
+                    uploadcontrol.SaveAs(Server.MapPath(path));                    
+
+                    // Draw/Create Thumbnail.
+                    System.Drawing.Image image = System.Drawing.Image.FromFile((Server.MapPath(path)));
+
+                    int newwidthimg = 160;
+                    float AspectRatio = (float)image.Size.Width / (float)image.Size.Height;
+                    int newHeight = Convert.ToInt32(newwidthimg / AspectRatio);
+
+                    Bitmap thumbnailBitmap = new Bitmap(newwidthimg, newHeight);
+                    Graphics thumbnailGraph = Graphics.FromImage(thumbnailBitmap);
+                    /*thumbnailGraph.CompositingQuality = CompositingQuality.HighQuality;
+                    thumbnailGraph.SmoothingMode = SmoothingMode.HighQuality;
+                    thumbnailGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;*/
+                    var imageRectangle = new Rectangle(0, 0, newwidthimg, newHeight);
+                    thumbnailGraph.DrawImage(image, imageRectangle);
+
+                    // Create watermark img
+
+                    System.Drawing.Image w_image = System.Drawing.Image.FromFile((Server.MapPath(path)));
+                    System.Drawing.Image watermarkImage = System.Drawing.Image.FromFile((Server.MapPath("DogeWoW.jpg")));
+                    using (Graphics imageGraphics = Graphics.FromImage(w_image))
+                    using (TextureBrush watermarkBrush = new TextureBrush(watermarkImage))
+                    {
+                        int x = (w_image.Width - watermarkImage.Width);      // Code to place img in the middle. (w_image.Width / 2 - watermarkImage.Width / 2);
+                        int y = (w_image.Height - watermarkImage.Height);    //                                  (w_image.Height / 2 - watermarkImage.Height / 2);
+                        watermarkBrush.TranslateTransform(x, y);
+                        imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(x, y), new Size(watermarkImage.Width + 1, watermarkImage.Height)));
+
+                        if (FileType == ".png")
+                            w_image.Save(Server.MapPath(wateredPath), ImageFormat.Png);
+
+                        if (FileType == ".jpg")
+                            w_image.Save(Server.MapPath(wateredPath), ImageFormat.Jpeg);
+
+                        // Delete tempfiles.
+                        w_image.Dispose();
+                        watermarkImage.Dispose();
+                        imageGraphics.Dispose();
+                        watermarkBrush.Dispose();
+                    }
+
+                    //Save img at myPath.
+                    if(FileType == ".png")
+                        thumbnailBitmap.Save(Server.MapPath(thumbPath), ImageFormat.Png);
+
+                    if (FileType == ".jpg")
+                        thumbnailBitmap.Save(Server.MapPath(thumbPath), ImageFormat.Jpeg);
+
+                    //Remove temp files.
+                    thumbnailGraph.Dispose();
+                    thumbnailBitmap.Dispose();
+                    image.Dispose();
+
+
+                    if (!String.IsNullOrEmpty(path))
+                    {
+                        // Showing a notification of success after uploading.
+                        string alert = "alert('Image uploaded successfully');";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
+
+
+                        var product = new Products();
+                        TryUpdateModel(product);
+                        product.PRODUCT_URL = path;
+                        product.PRODUCT_SMALL_URL = thumbPath;
+                        product.PRODUCT_WATER_URL = wateredPath;
+
+                        if (ModelState.IsValid)
+                        {
+                            new Products_CRUD().Insert(product);
+                        }
+                    }
+                }
+               
+
+                
+                
             }
-            else 
+            else
             {
                 string alert = "alert('No file uploaded!');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
             }
+
+
+
+
+
+
+
+
+
             
+
+        
+            ListViewMessage.DataBind();            
         }
+        #endregion
+
+        // Delete where id is product_id
+        #region delete query
+        public void ListViewMessage_DeleteItem(int product_id)
+        {
+            new Products_CRUD().Delete(product_id);
+        }
+        #endregion
+
+        
+        
     }
 }
