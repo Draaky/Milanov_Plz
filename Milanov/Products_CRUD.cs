@@ -15,14 +15,14 @@ namespace Milanov
         public List<Products> GetProducts()
         {
             
-            var sqlStr = @"SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_TEXT, PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL, PRODUCT_PRICE FROM PRODUCTS";
-            var connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
+            string sqlStr = @"SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_TEXT, PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL, PRODUCT_PRICE FROM PRODUCTS";
+            string connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                 .ConnectionString;
 
-            var result = new List<Products>();
-            using (var conn = new SqlConnection(connStr))
+            List<Products> result = new List<Products>();
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                using (var cmd = new SqlCommand(sqlStr, conn))
+                using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
                 {
                     conn.Open();
                     using (var rdr = cmd.ExecuteReader())
@@ -51,15 +51,15 @@ namespace Milanov
         #region Insert into DB
         public bool Insert(Products product)
         {
-            var sqlStr = @"INSERT INTO PRODUCTS (PRODUCT_NAME, PRODUCT_TEXT, PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL, PRODUCT_PRICE) 
+            string sqlStr = @"INSERT INTO PRODUCTS (PRODUCT_NAME, PRODUCT_TEXT, PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL, PRODUCT_PRICE) 
                 VALUES (@NAME, @TEXT, @URL, @SMALL_URL, @WATER_URL, @PRICE)";
-            var connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
+            string connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                 .ConnectionString;
 
-            
-            using (var conn = new SqlConnection(connStr))
+
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                using (var cmd = new SqlCommand(sqlStr, conn))
+                using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
                 {
                     
                     cmd.Parameters.AddWithValue("@NAME", product.PRODUCT_NAME);
@@ -80,15 +80,15 @@ namespace Milanov
         #region update row in DB
         public bool Update(Products product)
         {
-            var sqlStr = @"UPDATE PRODUCTS 
+            string sqlStr = @"UPDATE PRODUCTS 
                     SET PRODUCT_NAME = @NAME, PRODUCT_TEXT = @TEXT,  PRODUCT_PRICE = @PRICE WHERE PRODUCT_ID = @PRODUCT_ID";
-            var connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
+            string connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                 .ConnectionString;
 
-            var result = new List<Products>();
-            using (var conn = new SqlConnection(connStr))
+            List<Products> result = new List<Products>();
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                using (var cmd = new SqlCommand(sqlStr, conn))
+                using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
                 {
                     cmd.Parameters.AddWithValue("@PRODUCT_ID", product.PRODUCT_ID);
                     cmd.Parameters.AddWithValue("@NAME", product.PRODUCT_NAME);
@@ -112,13 +112,13 @@ namespace Milanov
         public bool Delete(int PRODUCT_ID)
         {
             // Delete img.
-            var selectquery = @"SELECT  PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL FROM PRODUCTS WHERE PRODUCT_ID = @PRODUCT_ID";
-            var connString = ConfigurationManager.ConnectionStrings["Milanov_DB"]
+            string selectquery = @"SELECT  PRODUCT_URL, PRODUCT_SMALL_URL, PRODUCT_WATER_URL FROM PRODUCTS WHERE PRODUCT_ID = @PRODUCT_ID";
+            string connString = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                 .ConnectionString;
 
-            using (var connect = new SqlConnection(connString))
+            using (SqlConnection connect = new SqlConnection(connString))
             {
-                using (var cmd = new SqlCommand(selectquery, connect))
+                using (SqlCommand cmd = new SqlCommand(selectquery, connect))
                 {
                     cmd.Parameters.AddWithValue("@PRODUCT_ID", PRODUCT_ID);
                     connect.Open();
@@ -164,12 +164,12 @@ namespace Milanov
             // DELETE DB info.
 
             // Delete row where id = id.
-            var sqlStr = @"DELETE FROM PRODUCTS WHERE PRODUCT_ID = @PRODUCT_ID";
-            var connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
+            string sqlStr = @"DELETE FROM PRODUCTS WHERE PRODUCT_ID = @PRODUCT_ID";
+            string connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                 .ConnectionString;
-            using (var conn = new SqlConnection(connStr))
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                using (var cmd = new SqlCommand(sqlStr, conn))
+                using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
                 {
                     cmd.Parameters.AddWithValue("@PRODUCT_ID", PRODUCT_ID);
                     conn.Open();

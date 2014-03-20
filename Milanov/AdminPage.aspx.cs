@@ -42,7 +42,7 @@ namespace Milanov
         #region Insert Query
         public void FormViewMessage_InsertItem()
         {
-            var uploadcontrol = FormViewMessage.FindControl("ImageUpload") as FileUpload;
+            FileUpload uploadcontrol = FormViewMessage.FindControl("ImageUpload") as FileUpload;
 
 
             if (uploadcontrol.HasFile)
@@ -88,36 +88,11 @@ namespace Milanov
                     /*thumbnailGraph.CompositingQuality = CompositingQuality.HighQuality;
                     thumbnailGraph.SmoothingMode = SmoothingMode.HighQuality;
                     thumbnailGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;*/
-                    var imageRectangle = new Rectangle(0, 0, newwidthimg, newHeight);
+                    Rectangle imageRectangle = new Rectangle(0, 0, newwidthimg, newHeight);
                     thumbnailGraph.DrawImage(image, imageRectangle);
 
-                    // Create watermark img
-
-                    System.Drawing.Image w_image = System.Drawing.Image.FromFile((Server.MapPath(path)));
-                    System.Drawing.Image watermarkImage = System.Drawing.Image.FromFile((Server.MapPath("DogeWoW.jpg")));
-                    using (Graphics imageGraphics = Graphics.FromImage(w_image))
-                    using (TextureBrush watermarkBrush = new TextureBrush(watermarkImage))
-                    {
-                        int x = (w_image.Width - watermarkImage.Width);      // Code to place img in the middle. (w_image.Width / 2 - watermarkImage.Width / 2);
-                        int y = (w_image.Height - watermarkImage.Height);    //                                  (w_image.Height / 2 - watermarkImage.Height / 2);
-                        watermarkBrush.TranslateTransform(x, y);
-                        imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(x, y), new Size(watermarkImage.Width + 1, watermarkImage.Height)));
-
-                        if (FileType == ".png")
-                            w_image.Save(Server.MapPath(wateredPath), ImageFormat.Png);
-
-                        if (FileType == ".jpg")
-                            w_image.Save(Server.MapPath(wateredPath), ImageFormat.Jpeg);
-
-                        // Delete tempfiles.
-                        w_image.Dispose();
-                        watermarkImage.Dispose();
-                        imageGraphics.Dispose();
-                        watermarkBrush.Dispose();
-                    }
-
                     //Save img at myPath.
-                    if(FileType == ".png")
+                    if (FileType == ".png")
                         thumbnailBitmap.Save(Server.MapPath(thumbPath), ImageFormat.Png);
 
                     if (FileType == ".jpg")
@@ -128,6 +103,47 @@ namespace Milanov
                     thumbnailBitmap.Dispose();
                     image.Dispose();
 
+                    // Create watermark img
+
+                    System.Drawing.Image w_image = System.Drawing.Image.FromFile((Server.MapPath(path)));
+                    // Resize img. to 900 px width.
+                    int w_newwidthimg = 900;
+                    float w_AspectRatio = (float)w_image.Size.Width / (float)w_image.Size.Height;
+                    int w_newHeight = Convert.ToInt32(w_newwidthimg / w_AspectRatio);
+
+                    Bitmap w_thumbnailBitmap = new Bitmap(w_newwidthimg, w_newHeight);
+                    Graphics w_thumbnailGraph = Graphics.FromImage(w_thumbnailBitmap);
+                    Rectangle w_imageRectangle = new Rectangle(0, 0, w_newwidthimg, w_newHeight);
+                    w_thumbnailGraph.DrawImage(w_image, w_imageRectangle);
+
+                    System.Drawing.Image watermarkImage = System.Drawing.Image.FromFile((Server.MapPath("watermark.png")));
+                    // Addthe watermark. 
+                    
+                    using (Graphics imageGraphics = Graphics.FromImage(w_thumbnailBitmap))
+                    using (TextureBrush watermarkBrush = new TextureBrush(watermarkImage))
+                    {
+                        int x = (w_thumbnailBitmap.Width / 2- watermarkImage.Width / 2);      // Code to place img in the middle. (w_image.Width / 2 - watermarkImage.Width / 2);
+                        int y = (w_thumbnailBitmap.Height / 2- watermarkImage.Height / 2);    //                                  (w_image.Height / 2 - watermarkImage.Height / 2);
+                        watermarkBrush.TranslateTransform(x, y);
+                        imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(x, y), new Size(watermarkImage.Width + 1, watermarkImage.Height)));
+
+                        if (FileType == ".png")
+                            w_thumbnailBitmap.Save(Server.MapPath(wateredPath), ImageFormat.Png);
+
+                        if (FileType == ".jpg")
+                            w_thumbnailBitmap.Save(Server.MapPath(wateredPath), ImageFormat.Jpeg);
+
+                        // Delete tempfiles.
+                        w_image.Dispose();
+                        watermarkImage.Dispose();
+                        imageGraphics.Dispose();
+                        watermarkBrush.Dispose();
+
+                        w_thumbnailGraph.Dispose();
+                        w_thumbnailBitmap.Dispose();
+                    
+                    }
+
 
                     if (!String.IsNullOrEmpty(path))
                     {
@@ -136,7 +152,7 @@ namespace Milanov
                         ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
 
 
-                        var product = new Products();
+                        Products product = new Products();
                         TryUpdateModel(product);
                         product.PRODUCT_URL = path;
                         product.PRODUCT_SMALL_URL = thumbPath;
@@ -147,11 +163,7 @@ namespace Milanov
                             new Products_CRUD().Insert(product);
                         }
                     }
-                }
-               
-
-                
-                
+                }    
             }
             else
             {
@@ -159,17 +171,6 @@ namespace Milanov
                 ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
             }
 
-
-
-
-
-
-
-
-
-            
-
-        
             ListViewMessage.DataBind();            
         }
         #endregion

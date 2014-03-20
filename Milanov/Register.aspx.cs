@@ -92,14 +92,14 @@ namespace Milanov
 
             if (m_Password == m_PasswordCheck)
             {
-                var sqlStr = @"INSERT INTO USERS (USERNAME, PASSWORD) 
+                string sqlStr = @"INSERT INTO USERS (USERNAME, PASSWORD) 
                     VALUES (@NAME, @PASSWORD)";
-                var connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
+                string connStr = ConfigurationManager.ConnectionStrings["Milanov_DB"]
                     .ConnectionString;
 
-                using (var conn = new SqlConnection(connStr))
+                using (SqlConnection conn = new SqlConnection(connStr))
                 {
-                    using (var cmd = new SqlCommand(sqlStr, conn))
+                    using (SqlCommand cmd = new SqlCommand(sqlStr, conn))
                     {
                         cmd.Parameters.AddWithValue("@NAME", m_Username);
                         cmd.Parameters.AddWithValue("@PASSWORD", m_Password);//String.IsNullOrWhiteSpace(product.PRODUCT_TEXT) ? DBNull.Value : (object)product.PRODUCT_TEXT);
