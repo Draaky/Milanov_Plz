@@ -122,8 +122,8 @@ namespace Milanov
                     using (Graphics imageGraphics = Graphics.FromImage(w_thumbnailBitmap))
                     using (TextureBrush watermarkBrush = new TextureBrush(watermarkImage))
                     {
-                        int x = (w_thumbnailBitmap.Width / 2- watermarkImage.Width / 2);      // Code to place img in the middle. (w_image.Width / 2 - watermarkImage.Width / 2);
-                        int y = (w_thumbnailBitmap.Height / 2- watermarkImage.Height / 2);    //                                  (w_image.Height / 2 - watermarkImage.Height / 2);
+                        int x = (w_thumbnailBitmap.Width / 2- watermarkImage.Width / 2);     
+                        int y = (w_thumbnailBitmap.Height / 2- watermarkImage.Height / 2);    
                         watermarkBrush.TranslateTransform(x, y);
                         imageGraphics.FillRectangle(watermarkBrush, new Rectangle(new Point(x, y), new Size(watermarkImage.Width + 1, watermarkImage.Height)));
 
