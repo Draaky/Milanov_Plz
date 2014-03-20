@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminPage.aspx.cs" Inherits="Milanov.Admin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/lightbox-2.6.min.js"></script>
+    <link href="css/lightbox.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -64,7 +69,11 @@
                             <div class="name"><%#: Item.PRODUCT_NAME %></div>
                             <div class="description"><%#: Item.PRODUCT_TEXT %></div>
                             <div class="link"><%#: Item.PRODUCT_URL %></div>
-                            <div class="thumbnail"><img alt="Thumbnail" src="<%#: Item.PRODUCT_SMALL_URL %>" /></div>
+                            <div class="thumbnail">
+                                <a href="<%#: Item.PRODUCT_WATER_URL %>" data-lightbox="image-1" title="<%#: Item.PRODUCT_NAME %>">
+                                    <img alt="Thumbnail" src="<%#: Item.PRODUCT_SMALL_URL %>" />
+                                </a>
+                            </div>
                             <div class="link"><%#: Item.PRODUCT_WATER_URL %></div>
                             <div class="price">Price: &euro; <%#: Item.PRODUCT_PRICE %></div>
                             <div id="buttons">

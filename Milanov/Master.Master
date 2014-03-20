@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Milanov OP</title>
-    <link href="Style.css" rel="stylesheet"/>
+    <link href="css/Style.css" rel="stylesheet"/>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -19,7 +19,7 @@
         <header>
                 <hgroup>
                     <h1 id="logo">
-                        <img src="DogeLogo.jpg" />
+                        <img src="./img/DogeWoW.jpg" />
                     </h1>
                     <h2 id="site_description"> Just a Milanov Site</h2>
                 </hgroup>

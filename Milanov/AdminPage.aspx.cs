@@ -56,7 +56,7 @@ namespace Milanov
                 string FileExtension = Path.GetExtension(uploadcontrol.PostedFile.FileName);
                 // Creating a complete relative path for storing the image.
                 // And also attaching the datetime stamp with the image name.
-                string path = "IMG/" + FileName +
+                string path = "IMG_BIG/" + FileName +
                        DateTime.Now.ToString("yyyy-MM-dd HHmmtt") + FileExtension;
 
                 string thumbPath = "IMG_SMALL/" + FileName +
@@ -116,7 +116,7 @@ namespace Milanov
                     Rectangle w_imageRectangle = new Rectangle(0, 0, w_newwidthimg, w_newHeight);
                     w_thumbnailGraph.DrawImage(w_image, w_imageRectangle);
 
-                    System.Drawing.Image watermarkImage = System.Drawing.Image.FromFile((Server.MapPath("watermark.png")));
+                    System.Drawing.Image watermarkImage = System.Drawing.Image.FromFile((Server.MapPath("img/watermark.png")));
                     // Addthe watermark. 
                     
                     using (Graphics imageGraphics = Graphics.FromImage(w_thumbnailBitmap))
